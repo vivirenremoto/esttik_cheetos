@@ -29,7 +29,7 @@
     <!--<link rel="prefetch" href="static/water.jpg" />-->
     <link rel="prefetch" href="static/cuerpo.jpg" />
     <link rel="prefetch" href="static/barba__.png" />
-    <link rel="prefetch" href="static/barba__a.png" />
+    <link rel="prefetch" href="static/barba__b.png" />
     <link rel="prefetch" href="static/barba2b.png" />
     <link rel="prefetch" href="static/barba2ba.png" />
     <link rel="prefetch" href="static/lengua1.png" />
@@ -362,11 +362,14 @@
 
 
 
+    <div id="game" style="display:none;z-index:3;position:fixed;left:0;right:0;top:0;bottom:0;">
 
 
-    <div id="game" style="display:none;position:fixed;left:0;right:0;top:0;bottom:0;">
+        <div id="superior" style="left:0;top:0;position:fixed;width:100%;z-index:4;">
+            <img src="static/barba__b.png" width="100%" >
+        </div>
+    
 
-        <div id="barba1" style="position:fixed;left:0;top:0;width:100%;"></div>
 
         <div
             style="z-index:9999;font-size:40px;position:fixed;left:0;right:0;top:0;background:black;color:white;padding:5px;">
@@ -375,6 +378,8 @@
                 <div style="float:right;">🕒 <span id="time">0:30</span></div>
             </div>
         </div>
+
+
 
         <!--
         <div id="time" style="position:absolute;text-align:center;top:0px;left:0;right:0;font-size:70px;">1:00</div>
@@ -587,6 +592,7 @@
         function startGame() {
             game_played = true;
 
+
             if (!music_playing) {
                 music_playing = true;
                 music.play();
@@ -666,8 +672,6 @@
         function endGame() {
             $('#game').hide();
             $('#result').show();
-
-
 
 
 
@@ -955,16 +959,17 @@
         function addFood(limit) {
             for (var i = 0; i < limit; i++) {
 
-                var top_diff = ( screen_height * 35 ) / 100; 
 
 
 
                 if( screen_width > 800 ){
 
-                    var left_diff = (screen_width*15) / 100;
+                    var left_diff = (screen_width*25) / 100;
                     var random_x = randomNumber(left_diff, screen_width-item_width-left_diff );
+                    var top_diff = ( screen_height * 55 ) / 100; 
                 }else{
                     var random_x = randomNumber(0, screen_width-item_width );
+                    var top_diff = ( screen_height * 50 ) / 100; 
 
                 }
 
@@ -1079,6 +1084,10 @@
 
         $(function () {
 
+
+            if( screen_width < 800 ){
+                $('#superior img').attr('src','static/barba2ba.png').css('margin-top', 20);
+            }
 
             $('#lengua').css('height', screen_height);
             $('#lengua_content').css('height', screen_height);
